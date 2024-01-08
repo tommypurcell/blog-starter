@@ -18,6 +18,7 @@ import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 import getMetaData from "@/components/getPostMetaData";
 import PostPreview from "@/components/PostPreview";
+import Hero from "@/components/ui/hero";
 
 const Home: React.FC = () => {
   const postMetaData = getMetaData();
@@ -27,6 +28,7 @@ const Home: React.FC = () => {
 
   return (
     <>
+      <Hero />
       <div className="grid grid-cols-1 gap-4 mt-5 md:grid-cols-2 p-6 lg:grid-cols-3">
         {postPreviews}
       </div>

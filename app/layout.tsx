@@ -3,6 +3,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/navbar";
+import { ThemeProvider } from "@/components/theme-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,15 +22,22 @@ export default function RootLayout({
       <html lang="en">
         <head>{/* Add your head content here */}</head>
         <body>
-          <header>
-            <Navbar />
-            {/* You can add other header content here */}
-          </header>
-          <main className="flex items-center justify-center h-full">
-            {children}
-            {/* The content of individual pages will be inserted here */}
-          </main>
-          <footer>{/* Add footer content here */}</footer>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <header>
+              <Navbar />
+              {/* You can add other header content here */}
+            </header>
+            <main className="flex items-center justify-center h-full">
+              {children}
+              {/* The content of individual pages will be inserted here */}
+            </main>
+            <footer>{/* Add footer content here */}</footer>
+          </ThemeProvider>
         </body>
       </html>
     </ClerkProvider>
