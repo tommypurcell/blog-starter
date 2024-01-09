@@ -2,32 +2,40 @@
  * v0 by Vercel.
  * @see https://v0.dev/t/jPLl7szZnkV
  */
+
 "use client";
 import { AvatarImage, AvatarFallback, Avatar } from "@/components/ui/avatar";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ResponsiveBar } from "@nivo/bar";
 import { ResponsiveLine } from "@nivo/line";
+import { useUser } from "@clerk/nextjs";
+import { useState, useEffect } from "react";
+
 
 export default function Profile() {
+  const {user} = useUser();
+  user?.fullName
+  user?.primaryEmailAddress?.emailAddress
+  user?.imageUrl
+
+
   return (
     <main className="flex flex-col items-center justify-center min-h-screen py-2">
       <div className="flex flex-col items-center justify-center">
         <Avatar className="w-24 h-24 mb-4">
-          <AvatarImage alt="User name" src="" />
-          <AvatarFallback>UN</AvatarFallback>
+          <AvatarImage alt="User avatar" src={user?.imageUrl} />
         </Avatar>
-        <h1 className="text-2xl font-bold">User Name</h1>
-        <p className="text-center text-gray-500 dark:text-gray-400">
-          Bio: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-          convallis dictum arcu, at aliquet purus elementum vitae.
-        </p>
+        <h1 className="text-2xl font-bold">{user?.fullName}</h1>
       </div>
       <div className="w-full max-w-md mx-auto mt-4">
         <div className="flex flex-col space-y-4">
           <div className="flex items-center space-x-2">
             <MailIcon className="w-5 h-5" />
-            <span className="text-sm">user@example.com</span>
+            <span className="text-sm">
+              {user?.primaryEmailAddress?.emailAddress}
+            </span>
+
           </div>
         </div>
         <div className="mt-6">
