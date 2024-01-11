@@ -1,8 +1,6 @@
 import React from "react";
-import fs from "fs";
-import matter from "gray-matter";
-import Image from "next/image";
 import Link from "next/link";
+import Image from "next/image";
 
 import {
   Card,
@@ -15,10 +13,7 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 
-import getMetaData from "@/components/getPostMetaData";
-import { PostMetadata } from "./postmetadata";
-
-const PostPreview = (props: PostMetadata) => {
+const PostPreview = (props) => {
   return (
     <div key={props.slug}>
       <Link href={`/posts/${props.slug}`}>
@@ -32,8 +27,9 @@ const PostPreview = (props: PostMetadata) => {
               <AvatarImage src="https://github.com/shadcn.png" />
               <AvatarFallback>CN</AvatarFallback>
             </Avatar>
+            {/* Image Component for displaying the image */}
             <div className="w-[450px] m-5">
-              <AspectRatio ratio={16 / 9}></AspectRatio>
+              <Image src={props.imageSrc} alt={props.title} width={450} height={253} />
             </div>
           </CardContent>
           <CardFooter>
