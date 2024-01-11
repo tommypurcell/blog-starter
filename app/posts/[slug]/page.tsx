@@ -18,21 +18,23 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 
+import { useUser } from "@clerk/nextjs";
+
+
+
+
 const PostPage = () => {
+  const { user } = useUser()
+  console.log(user?.imageUrl)
 
   const [posts, setPosts] = useState(null);
 
   const {userId, getToken} = useAuth();
-  console.log(userId)
-
   const loadPosts = async () => {
     try {
       const token = await getToken({ template: "supabase" });
-      console.log('token', token);
       const postsData = await getAllPosts({ token });
-      console.log('Posts Data ==>', postsData);
       setPosts(postsData); // Update the state after fetching data
-      console.log('Posts ==>', posts)
     } catch (error) {
       console.error("Error loading posts:", error);
     }
@@ -55,7 +57,7 @@ const PostPage = () => {
             </CardHeader>
             <CardContent className="m-5">
               <Avatar>
-                <AvatarImage src="https://github.com/shadcn.png" />
+                <AvatarImage src={post.author_image} />
                 <AvatarFallback>CN</AvatarFallback>
               </Avatar>
               {/* Image Component for displaying the image */}

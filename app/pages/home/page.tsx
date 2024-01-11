@@ -41,7 +41,6 @@ const Home: React.FC = () => {
       console.error("Error loading todos:", error);
     }
   };
-  
 
   useEffect(() => {
     loadTodos();
