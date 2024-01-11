@@ -1,3 +1,8 @@
+
+# This Project is intended to be a NextJS starter template for a blog.
+
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
