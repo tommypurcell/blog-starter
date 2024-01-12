@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { useAuth } from "@clerk/nextjs";
 import { getAllPosts } from "@/utils/supabaseRequests";
+
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -30,10 +31,11 @@ const PostPage = () => {
   const [posts, setPosts] = useState(null);
 
   const {userId, getToken} = useAuth();
+
   const loadPosts = async () => {
     try {
       const token = await getToken({ template: "supabase" });
-      const postsData = await getAllPosts({ token });
+      const postsData = await getAllPosts({token});
       setPosts(postsData); // Update the state after fetching data
     } catch (error) {
       console.error("Error loading posts:", error);

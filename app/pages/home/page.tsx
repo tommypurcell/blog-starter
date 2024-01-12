@@ -21,7 +21,7 @@ import PostPreview from "@/components/PostPreview";
 import Hero from "@/components/ui/hero";
 import { useAuth } from "@clerk/nextjs";
 import { useEffect, useState } from "react";
-import {getTodos} from '@/utils/supabaseRequests'
+
 import SupabaseTest from "@/components/supabase-test-fetch-data";
 import PostPage from "@/app/posts/[slug]/page";
 
@@ -29,21 +29,9 @@ const Home: React.FC = () => {
 
   const [todos, setTodos] = useState([])
   const {userId, getToken} = useAuth();
-  console.log(userId)
-  const loadTodos = async () => {
-    try {
-      const token = await getToken({ template: "supabase" });
-      console.log('token', token)
-      const todosData = await getTodos({ userId, token });
-      setTodos(todosData);
-      console.log('todos ==>', todosData?.map((todo) => todo.title));
-    } catch (error) {
-      console.error("Error loading todos:", error);
-    }
-  };
 
   useEffect(() => {
-    loadTodos();
+
   },[])
 
   return (
